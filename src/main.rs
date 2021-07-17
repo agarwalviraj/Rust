@@ -1,36 +1,20 @@
-struct Dog{
-
-}
-struct Cat{
-
+trait Summbale<T>{
+    fn sum(&self)->T;
 }
 
-trait Animal{
-    fn make_noise(&self)->&'static str;
-}
-
-impl Animal for Dog {
-    fn make_noise(&self)->&'static str {
-        return "woof";
+impl Summbale<i32> for Vec<i32>{
+    fn sum(&self)->i32 {
+        let mut sum =0;
+        for i in self{
+            sum+=*i;
+        }    
+        sum
     }
 }
 
-impl Animal for Cat {
-    fn make_noise(&self)->&'static str {
-        return "meow";
-    }
-}
 
-fn get_animal(rand_num:f64)->Box <dyn Animal>{
-    if rand_num<1.0{
-         Box::new(Dog{})
-    }else{
-         Box::new(Cat{})
-    }
-}
 
 fn main(){
-  println!("The aimal says {}",get_animal(0.5).make_noise()) ;
-  println!("The aimal says {}",get_animal(1.5).make_noise()) 
-
+    let a = vec![1,2,3,4,5];
+    println!("{}", a.sum());
 }
