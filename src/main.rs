@@ -13,13 +13,14 @@ impl Duplicateable for i32 {
     }
 }
 
-fn duplicate <T:Duplicateable> (x:T){
-    println!("{}",x.dupl());
+
+fn duplicate (x:&dyn Duplicateable){
+    println!("{}", x.dupl());
 }
 
 fn main(){
     let a =42;
     let b ="Hi jhon".to_string();
-    duplicate(a);
-    duplicate(b);
+    duplicate(&a);
+    duplicate(&b);
 }
